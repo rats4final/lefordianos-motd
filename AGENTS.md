@@ -7,3 +7,11 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## This project
+
+The MOTD (`/motd`) and banner (`/host`) pages of the Lefordianos L4D2 server; deployed on Vercel by the
+owner (rats4final). The game shows them in its old built-in browser: keep them plain HTML/CSS (no
+Tailwind, no web fonts, hex colors), static, readable without JavaScript. Docs are bilingual
+(`README.md` + `README.es.md`). The server side (plugins, `mymotd.txt`/`myhost.txt`) is in
+`../lefordianos_plugins` and `../l4d2-server`. No AI co-author trailers in commits.

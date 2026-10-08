@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+[Español](README.es.md)
 
-## Getting Started
+# lefordianos-motd
 
-First, run the development server:
+The pages the **Lefordianos** Left 4 Dead 2 server shows when you join: the message of the day
+(`/motd`) and the server banner (`/host`). A small [Next.js](https://nextjs.org) site, meant to be
+deployed on Vercel.
+
+The plugins and config of the server live in
+[lefordianos_plugins](https://github.com/rats4final/lefordianos_plugins).
+
+## Pages
+
+| Path | What | Server file |
+|---|---|---|
+| `/motd` | Message of the day: commands (`!menu`, `!votes`...) and rules | `motdfile` |
+| `/host` | Banner strip with the server's name | `hostfile` |
+| `/` | Index with links to both | - |
+
+The game shows them in its own **old built-in browser**, so the pages are plain HTML and CSS: no
+Tailwind, no web fonts, hex colors, and they're prerendered (they show even if the browser can't run
+the JavaScript).
+
+## Change the text
+
+- Commands and rules: `app/motd/page.tsx` (the `commands` list at the top).
+- Banner: `app/host/page.tsx`. Colors and sizes: `app/globals.css`.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000/motd
+npm run build      # checks it builds like Vercel will
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Connect it to the server
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+After deploying on Vercel (e.g. `https://lefordianos-motd.vercel.app`), on the server, in the game
+folder `left4dead2/`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `mymotd.txt`: one line, `https://<your domain>/motd`
+- `myhost.txt`: one line, `https://<your domain>/host`
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The server's `cfg/server.cfg` already points to them (`motdfile "mymotd.txt"`,
+`hostfile "myhost.txt"`). Restart the server or change map to see it.
