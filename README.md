@@ -32,13 +32,12 @@ npm run dev        # http://localhost:3000/motd
 npm run build      # checks it builds like Vercel will
 ```
 
-## Connect it to the server
+## The game doesn't use this site
 
-After deploying on Vercel (e.g. `https://lefordianos-motd.vercel.app`), on the server, in the game
-folder `left4dead2/`:
+The game's built-in browser **can't open `https://` pages**, and Vercel always sends `http` visitors
+to `https`. So the server shows a plain-HTML copy of these pages that it serves itself over `http`
+(`web/` in the private server repo, port 27080). This site stays as the public version for normal
+browsers (https://lefordianos-motd.vercel.app/motd). If you change the commands or rules, change both.
 
-- `mymotd.txt`: one line, `https://<your domain>/motd`
-- `myhost.txt`: one line, `https://<your domain>/host`
-
-The server's `cfg/server.cfg` already points to them (`motdfile "mymotd.txt"`,
-`hostfile "myhost.txt"`). Restart the server or change map to see it.
+To use this site in the game you'd need a host that answers plain `http` (e.g. your own domain behind
+Cloudflare with "Always Use HTTPS" off).

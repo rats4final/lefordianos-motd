@@ -14,4 +14,6 @@ The MOTD (`/motd`) and banner (`/host`) pages of the Lefordianos L4D2 server; de
 owner (rats4final). The game shows them in its old built-in browser: keep them plain HTML/CSS (no
 Tailwind, no web fonts, hex colors), static, readable without JavaScript. Docs are bilingual
 (`README.md` + `README.es.md`). The server side (plugins, `mymotd.txt`/`myhost.txt`) is in
-`../lefordianos_plugins` and `../l4d2-server`. No AI co-author trailers in commits.
+`../lefordianos_plugins` and `../l4d2-server`. **The game doesn't load this site**: its browser can't
+open https and Vercel forces it, so the server serves a plain-HTML copy (`../l4d2-server/web/`) over
+http; keep the two texts in sync. No AI co-author trailers in commits.
